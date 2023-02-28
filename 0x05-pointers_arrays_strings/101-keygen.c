@@ -1,33 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 /**
- * _atoi - converts a string to an integer
+ * main - Generates random passwords for 101-crackme program
  *
- * @s: pointer to string
- *
- * Return: integer value of string
+ * Return: Always 0
  */
-int _atoi(char *s)
+int main(void)
 {
-    int sign = 1, result = 0;
-    char *p = s;
+    int i, sum, n;
+    char password[100] = {0};
 
-    while (*p != '\0')
+    srand(time(0));
+    sum = 0;
+    i = 0;
+
+    while (sum < 2772 - 122 && i < 98)
     {
-        if (*p == '-')
-        {
-            sign = -sign;
-        }
-        else if (*p >= '0' && *p <= '9')
-        {
-            result = result * 10 + (*p - '0');
-        }
-        else if (result > 0)
-        {
-            /* we have found a non-numeric character after the number */
-            break;
-        }
+        n = rand() % 62;
+        if (n < 10)
+            password[i] = '0' + n;
+        else if (n < 36)
+            password[i] = 'A' + n - 10;
+        else
+            password[i] = 'a' + n - 36;
 
-        p++;
+        sum += (int)password[i];
+        i++;
     }
 
-    return result * sign;
+    password[i] = (2772 - sum < 10) ? (2772 - sum + '0') :
+                                      (i < 98) ? (2772 - sum - 10 + 'A') :
+                                                 (2772 - sum - 10 + 'a');
+
+    printf("%s\n", password);
+
+    return (0);
 }
