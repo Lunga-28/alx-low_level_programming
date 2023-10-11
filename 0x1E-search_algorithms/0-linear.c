@@ -1,11 +1,11 @@
 #include "search_algos.h"
 
 /**
- * linear_search - ...........
- * @array: ............
- * @size: .............
- * @value: ............
- * Return: ............
+ * linear_search - uses linear search algorithm
+ * @array: array search
+ * @size: size
+ * @value: value to search
+ * Return: -1 if not found else the first index
  */
 int linear_search(int *array, size_t size, int value)
 {
